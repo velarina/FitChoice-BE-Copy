@@ -27,9 +27,15 @@ const products = database.define("products", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  permission: {
+  approval: {
     type: DataTypes.ENUM("declined", "high", "medium", "low"),
     allowNull: false,
+  },
+  ingredients: {
+    types: DataTypes.STRING
+  },
+  nutrients: {
+    types: DataTypes.STRING
   },
   nutritionistID: {
     type: DataTypes.UUID,

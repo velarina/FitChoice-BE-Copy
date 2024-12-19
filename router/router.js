@@ -10,6 +10,7 @@ const nutritionistController = require("../controllers/nutritionist_controller")
 const productController = require("../controllers/product_controller");
 
 router.get("/admin", adminController.data);
+// router.post("/admin/login", adminController.login);
 router.get("/admin/:id", adminController.index);
 router.post("/admin", adminController.store);
 router.put("/admin/:id", adminController.update);
@@ -34,6 +35,7 @@ router.put("/ingredient/:id", ingredientController.update);
 router.delete("/ingredient/:id", ingredientController.delete);
 
 router.get("/member/", memberController.data);
+router.post("/member/login", memberController.login);
 router.get("/member/id/:id", memberController.index);
 router.post("/member", memberController.store);
 router.put("/member/:id", memberController.update);

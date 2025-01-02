@@ -149,3 +149,5 @@ module.exports = {
     }
   },
 };
+
+module.exports = memberController;

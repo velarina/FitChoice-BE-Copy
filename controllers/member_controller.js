@@ -115,7 +115,7 @@ module.exports = {
         where: {
           memberID: req.params.id,
         },
-      }
+      },
     );
     if (!_member) {
       return res.status(404).json({
@@ -149,5 +149,3 @@ module.exports = {
     }
   },
 };
-
-module.exports = memberController;

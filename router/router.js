@@ -8,7 +8,7 @@ const ingredientController = require("../controllers/ingredient_controller");
 const memberController = require("../controllers/member_controller");
 const nutritionistController = require("../controllers/nutritionist_controller");
 const productController = require("../controllers/product_controller");
-const healthIssueController = require("../controllers/health_issue_controller");
+const healthIssueController = require("../controllers/healthIssue_controller");
 
 router.get("/admin", adminController.data);
 // router.post("/admin/login", adminController.login);

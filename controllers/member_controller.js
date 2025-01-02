@@ -1,7 +1,40 @@
 const member = require("../models/member");
-const bcrypt = require('bcrypt');
+const bcrypt = require("bcrypt");
 
 module.exports = {
+  login: async (req, res) => {
+    try {
+      await console.log(req.body);
+      const _member = await member.findOne({
+        where: { memberEmail: req.body.memberEmail },
+      });
+      if (!_member) {
+        return res.status(404).json({
+          status: 401,
+          message: "Account not found.",
+        });
+      }
+
+      const match = bcrypt.compare(_member.password, req.body.password);
+      if (!match) {
+        return res.status(401).json({
+          status: 401,
+          message: "Password incorrect.",
+        });
+      }
+
+      return res.status(200).json({
+        status: 200,
+        message: "Berhasil login!",
+      });
+    } catch (error) {
+      console.error(error);
+      return res.status(500).json({
+        status: 500,
+        message: "Server error.",
+      });
+    }
+  },
   data: async (_req, res) => {
     try {
       const members = await member.findAll();
@@ -48,9 +81,10 @@ module.exports = {
   },
   store: async (req, res) => {
     try {
+      console.log(req.body);
       const _member = await member.create({
         memberName: req.body.memberName,
-        membeEmail: req.body.membeEmail,
+        memberEmail: req.body.memberEmail,
         password: await bcrypt.hash(req.body.password, 10),
         age: req.body.age,
         gender: req.body.gender,
@@ -72,7 +106,7 @@ module.exports = {
     const _member = await member.update(
       {
         memberName: req.body.memberName,
-        membeEmail: req.body.membeEmail,
+        memberEmail: req.body.memberEmail,
         password: await bcrypt.hash(req.body.password, 10),
         age: req.body.age,
         gender: req.body.gender,
@@ -81,7 +115,7 @@ module.exports = {
         where: {
           memberID: req.params.id,
         },
-      },
+      }
     );
     if (!_member) {
       return res.status(404).json({

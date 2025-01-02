@@ -8,6 +8,7 @@ const ingredientController = require("../controllers/ingredient_controller");
 const memberController = require("../controllers/member_controller");
 const nutritionistController = require("../controllers/nutritionist_controller");
 const productController = require("../controllers/product_controller");
+const healthIssueController = require("../controllers/health_issue_controller");
 
 router.get("/admin", adminController.data);
 router.get("/admin/:id", adminController.index);
@@ -38,6 +39,7 @@ router.get("/member/id/:id", memberController.index);
 router.post("/member", memberController.store);
 router.put("/member/:id", memberController.update);
 router.delete("/member/:id", memberController.delete);
+router.post("/member/login", memberController.login);
 
 router.get("/nutritionist/", nutritionistController.data);
 router.get("/nutritionist/id/:id", nutritionistController.index);
@@ -50,5 +52,11 @@ router.get("/product/id/:id", productController.index);
 router.post("/product", productController.store);
 router.put("/product/:id", productController.update);
 router.delete("/product/:id", productController.delete);
+
+router.get("/healthissue/", healthIssueController.data);
+router.get("/healthissue/id/:id", healthIssueController.index);
+router.post("/healthissue", healthIssueController.store);
+router.put("/healthissue/:id", healthIssueController.update);
+router.delete("/healthissue/:id", healthIssueController.delete);
 
 module.exports = router;

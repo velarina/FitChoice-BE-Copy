@@ -23,21 +23,19 @@ const sync = async () => {
 
     const admins = await admin.findAll();
     if (admins.length == 0) {
+      await admin.create({
+        adminName: "AdminP",
+        adminEmail: "admin@fitchoice.id",
+        password: await bcrypt.hash("admin123", 10),
+        permission: "adminProduct",
+      });
       await admin
-        .create(
-          {
-            adminName: "AdminP",
-            adminEmail: "admin@fitchoice.id",
-            password: await bcrypt.hash("admin123", 10),
-            permission: "adminProduct",
-          },
-          {
-            adminName: "AdminR",
-            adminEmail: "admin@fitchoice.id",
-            password: await bcrypt.hash("admin123", 10),
-            permission: "adminRegistrations",
-          }
-        )
+        .create({
+          adminName: "AdminR",
+          adminEmail: "admin@fitchoice.id",
+          password: await bcrypt.hash("admin123", 10),
+          permission: "adminRegistrations",
+        })
         .then(() => console.log("Admin account created!"))
         .catch((error) =>
           console.error("Error seeding Admin account: ", error.message)

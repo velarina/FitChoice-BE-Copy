@@ -6,7 +6,8 @@ const PORT = config.port;
 const sync = require("./models/sync");
 
 sync();
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(router);
 
 app.listen(PORT, () => {

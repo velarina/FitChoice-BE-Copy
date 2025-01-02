@@ -23,6 +23,7 @@ module.exports = {
   },
   index: async (req, res) => {
     try {
+      console.log("test");
       const _product = await product.findOne({
         where: {
           productID: req.params.id,
@@ -56,7 +57,7 @@ module.exports = {
         comment: req.body.comment,
         approval: req.body.approval,
         ingredients: req.body.ingredients,
-        nutrients: req.body.nutrients
+        nutrients: req.body.nutrients,
       });
 
       return res.status(201).json({
@@ -80,13 +81,13 @@ module.exports = {
         comment: req.body.comment,
         approval: req.body.approval,
         ingredients: req.body.ingredients,
-        nutrients: req.body.nutrients
+        nutrients: req.body.nutrients,
       },
       {
         where: {
           productID: req.params.id,
         },
-      },
+      }
     );
     if (!_product) {
       return res.status(404).json({

@@ -25,14 +25,14 @@ const sync = async () => {
     if (admins.length == 0) {
       await admin.create({
         adminName: "AdminP",
-        adminEmail: "admin@fitchoice.id",
+        adminEmail: "adminP@fitchoice.id",
         password: await bcrypt.hash("admin123", 10),
         permission: "adminProduct",
       });
       await admin
         .create({
           adminName: "AdminR",
-          adminEmail: "admin@fitchoice.id",
+          adminEmail: "adminR@fitchoice.id",
           password: await bcrypt.hash("admin123", 10),
           permission: "adminRegistrations",
         })

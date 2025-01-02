@@ -24,7 +24,7 @@ module.exports = {
           healthIssueID: req.params.id,
         },
       });
-      if (_healthIssue) {
+      if (!_healthIssue) {
         return res.status(404).json({
           status: 404,
           message: "Health Issue not found.",
@@ -75,7 +75,7 @@ module.exports = {
         where: {
           healthIssueID: req.params.id,
         },
-      },
+      }
     );
     if (_healthIssue) {
       return res.status(404).json({

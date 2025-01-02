@@ -9,7 +9,7 @@ const member = database.define("member", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
   },
   memberName: {
     type: DataTypes.STRING,

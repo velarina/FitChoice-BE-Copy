@@ -7,7 +7,7 @@ const admin = database.define("admin", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
   },
   adminName: {
     type: DataTypes.STRING,
@@ -24,6 +24,14 @@ const admin = database.define("admin", {
   permission: {
     type: DataTypes.ENUM("adminProduct", "adminRegistrations"),
     allowNull: false,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
 });
 

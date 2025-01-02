@@ -8,7 +8,7 @@ const category = database.define("category", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
   },
   categoryName: {
     type: DataTypes.STRING,

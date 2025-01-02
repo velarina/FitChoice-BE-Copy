@@ -9,7 +9,7 @@ const nutrient = database.define("nutrient", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
   },
   nutrientName: {
     type: DataTypes.STRING,

@@ -13,7 +13,11 @@ const products = database.define("products", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
+  },
+  productsImage: {
+    type: DataTypes.STRING,
+    allowNull: false,
   },
   productsName: {
     type: DataTypes.STRING,
@@ -23,49 +27,35 @@ const products = database.define("products", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-  comment: {
+  comments: {
     type: DataTypes.STRING,
-    allowNull: false,
   },
   approval: {
-    type: DataTypes.ENUM("declined", "high", "medium", "low"),
+    type: DataTypes.ENUM("Waiting", "Declined", "High", "Medium", "Low"),
     allowNull: false,
+  },
+  categories: {
+    type: DataTypes.STRING,
   },
   ingredients: {
-    types: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   nutrients: {
-    types: DataTypes.STRING
+    type: DataTypes.STRING,
   },
   nutritionistID: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    autoIncrement: false,
-    primaryKey: true,
-    references: {
-      model: "nutritionists",
-      key: "nutritionistID",
-    },
+    type: DataTypes.STRING,
   },
   adminID: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    autoIncrement: false,
-    primaryKey: true,
-    references: {
-      model: "admins",
-      key: "adminID",
-    },
+    type: DataTypes.STRING,
   },
-  categoryID: {
-    type: DataTypes.UUID,
-    allowNull: false,
-    autoIncrement: false,
-    primaryKey: true,
-    references: {
-      model: "categories",
-      key: "categoryID",
-    },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
 });
 

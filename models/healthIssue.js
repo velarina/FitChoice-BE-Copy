@@ -9,7 +9,7 @@ const healthIssue = database.define("healthIssue", {
     allowNull: false,
     autoIncrement: false,
     primaryKey: true,
-    defaultValue: DataTypes.UUIDV4
+    defaultValue: DataTypes.UUIDV4,
   },
   healthIssueName: {
     type: DataTypes.STRING,
@@ -22,6 +22,14 @@ const healthIssue = database.define("healthIssue", {
   prohibition: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  createdAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
+  },
+  updatedAt: {
+    type: DataTypes.DATE,
+    allowNull: true,
   },
 });
 

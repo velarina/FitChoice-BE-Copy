@@ -23,10 +23,10 @@ module.exports = {
   },
   index: async (req, res) => {
     try {
-      console.log("test");
+      console.log(req.params);
       const _product = await product.findOne({
         where: {
-          productID: req.params.id,
+          productsID: req.params.id,
         },
       });
       if (!_product) {
@@ -87,7 +87,7 @@ module.exports = {
         where: {
           productID: req.params.id,
         },
-      }
+      },
     );
     if (!_product) {
       return res.status(404).json({

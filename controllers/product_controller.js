@@ -53,6 +53,7 @@ module.exports = {
     try {
       const _product = await product.create({
         productsName: req.body.productsName,
+        productsImage: req.body.productsImage,
         productsBrand: req.body.productsBrand,
         comment: req.body.comment,
         approval: req.body.approval,
@@ -77,6 +78,7 @@ module.exports = {
     const _product = await product.update(
       {
         productsName: req.body.productsName,
+        productsImage: req.body.productsImage,
         productsBrand: req.body.productsBrand,
         comment: req.body.comment,
         approval: req.body.approval,

@@ -1,4 +1,5 @@
 const healthIssue = require("../models/healthIssue");
+const member_healthissue = require("../models/member_healthIssue");
 
 module.exports = {
   data: async (_req, res) => {
@@ -75,7 +76,7 @@ module.exports = {
         where: {
           healthIssueID: req.params.id,
         },
-      }
+      },
     );
     if (_healthIssue) {
       return res.status(404).json({
@@ -105,5 +106,24 @@ module.exports = {
       status: 200,
       message: "Health Issue successfully deleted.",
     });
+  },
+  assign: async (req, res) => {
+    try {
+      await member_healthissue.create({
+        memberMemberID: req.body.memberID,
+        healthIssueHealthIssueID: req.body.healthIssueID,
+      });
+
+      return res.status(201).json({
+        status: 201,
+        message: "Health Issue Assigned.",
+      });
+    } catch (error) {
+      console.log(error.message);
+      return res.status(500).json({
+        status: 500,
+        message: "Server error",
+      });
+    }
   },
 };

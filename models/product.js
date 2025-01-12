@@ -38,10 +38,10 @@ const products = database.define("products", {
     type: DataTypes.STRING,
   },
   ingredients: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   nutrients: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
   },
   nutritionistID: {
     type: DataTypes.STRING,

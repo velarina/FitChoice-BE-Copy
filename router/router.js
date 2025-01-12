@@ -58,8 +58,10 @@ router.delete("/product/:id", productController.delete);
 router.get("/healthissue/", healthIssueController.data);
 router.post("/healthissue/assign", healthIssueController.assign);
 router.get("/healthissue/id/:id", healthIssueController.index);
+router.get("/healthissue/member/:id", healthIssueController.detail);
 router.post("/healthissue", healthIssueController.store);
 router.put("/healthissue/:id", healthIssueController.update);
 router.delete("/healthissue/:id", healthIssueController.delete);
+router.delete("/healthissue/member/unassign", healthIssueController.unassign);
 
 module.exports = router;

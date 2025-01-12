@@ -18,7 +18,7 @@ const sync = async () => {
       .sync()
       .then(() => console.log("Admin table created successfully."))
       .catch((error) =>
-        console.error("Error creating Admin table: ", error.message)
+        console.error("Error creating Admin table: ", error.message),
       );
 
     const admins = await admin.findAll();
@@ -38,7 +38,7 @@ const sync = async () => {
         })
         .then(() => console.log("Admin account created!"))
         .catch((error) =>
-          console.error("Error seeding Admin account: ", error.message)
+          console.error("Error seeding Admin account: ", error.message),
         );
     }
 
@@ -47,7 +47,7 @@ const sync = async () => {
       .sync()
       .then(() => console.log("Nutritionist table created successfully."))
       .catch((error) =>
-        console.error("Error creating Nutritionist table: ", error.message)
+        console.error("Error creating Nutritionist table: ", error.message),
       );
 
     const nutritionists = await nutritionist.findAll();
@@ -63,36 +63,37 @@ const sync = async () => {
         })
         .then(() => console.log("Nutritionist account created!"))
         .catch((error) =>
-          console.error("Error seeding Nutritionist account: ", error.message)
+          console.error("Error seeding Nutritionist account: ", error.message),
         );
     }
 
-    member.belongsToMany(healthIssue, { through: member_healthissue });
+    member.belongsToMany(healthIssue, {
+      through: member_healthissue,
+    });
     await member
       .sync()
       .then(() => console.log("Member table created successfully."))
       .catch((error) =>
-        console.error("Error creating Member table: ", error.message)
+        console.error("Error creating Member table: ", error.message),
       );
 
-    healthIssue.belongsToMany(member, { through: member_healthissue });
+    healthIssue.belongsToMany(member, {
+      through: member_healthissue,
+    });
     await healthIssue
       .sync()
       .then(() => console.log("Health Issue table created successfully."))
       .catch((error) =>
-        console.error("Error creating Health Issue table: ", error.message)
+        console.error("Error creating Health Issue table: ", error.message),
       );
 
     await member_healthissue
       .sync()
       .then(() =>
-        console.log("Member Health Issue table created successfully.")
+        console.log("Member Health Issue table created successfully."),
       )
       .catch((error) =>
-        console.error(
-          "Error creating Member Health Issue table: ",
-          error.message
-        )
+        console.error("Error creating Member Health Issue table: ", error),
       );
 
     //category.hasMany(products);
@@ -100,7 +101,7 @@ const sync = async () => {
       .sync()
       .then(() => console.log("Category table created sucessfully."))
       .catch((error) =>
-        console.error("Error creating Category table: " < error.message)
+        console.error("Error creating Category table: " < error.message),
       );
 
     // ingredient.belongsToMany(products, {
@@ -113,7 +114,7 @@ const sync = async () => {
       .sync()
       .then(() => console.log("Ingredient table created successfully."))
       .catch((error) =>
-        console.error("Error creating Ingredient table: ", error.message)
+        console.error("Error creating Ingredient table: ", error.message),
       );
 
     //nutrient.belongsToMany(products, {
@@ -126,7 +127,7 @@ const sync = async () => {
       .sync()
       .then(() => console.log("Nutrient table created successfully."))
       .catch((error) =>
-        console.error("Error creating Nutrient table: ", error.message)
+        console.error("Error creating Nutrient table: ", error.message),
       );
 
     // products.belongsToMany(nutrient, { through: product_nutrient });
@@ -135,7 +136,7 @@ const sync = async () => {
       .sync()
       .then(() => console.log("Product table created successfully."))
       .catch((error) =>
-        console.error("Error creating Product table:", error.message)
+        console.error("Error creating Product table:", error.message),
       );
   } catch (error) {
     console.error("Error syncing tables: ", error.message);

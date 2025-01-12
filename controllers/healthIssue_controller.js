@@ -1,4 +1,5 @@
 const healthIssue = require("../models/healthIssue");
+const member = require("../models/member");
 const member_healthissue = require("../models/member_healthIssue");
 
 module.exports = {
@@ -91,7 +92,7 @@ module.exports = {
     });
   },
   delete: async (req, res) => {
-    const healthIssues = healthIssue.destroy({
+    const healthIssues = await healthIssue.destroy({
       where: {
         healthIssueID: req.params.id,
       },
@@ -141,10 +142,56 @@ module.exports = {
         });
       }
     } catch (error) {
-      console.error(error.message);
+      console.log(error);
       return res.status(500).json({
         status: 500,
-        message: "Server error.",
+        message: "Server error",
+      });
+    }
+  },
+  unassign: async (req, res) => {
+    console.log(req.body);
+    try {
+      await member_healthissue.destroy({
+        where: {
+          healthIssueHealthIssueID: req.body.healthIssueID,
+          memberMemberID: req.body.memberID,
+        },
+      });
+
+      return res.status(200).json({
+        status: 200,
+        message: "Health Issue unassigned!",
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        message: "Server error",
+        error: error.message,
+      });
+    }
+  },
+  detail: async (req, res) => {
+    console.log(req.params.id);
+    try {
+      const _healthIssues = await healthIssue.findAll({
+        include: {
+          model: member,
+          attributes: [],
+          where: { memberID: req.params.id },
+        },
+      });
+
+      return res.status(200).json({
+        status: 200,
+        message: "Health Issues successfully sent.",
+        healthIssues: _healthIssues,
+      });
+    } catch (error) {
+      return res.status(500).json({
+        status: 500,
+        message: "Server error",
+        error: error.message,
       });
     }
   },

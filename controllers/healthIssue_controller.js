@@ -76,7 +76,7 @@ module.exports = {
         where: {
           healthIssueID: req.params.id,
         },
-      },
+      }
     );
     if (_healthIssue) {
       return res.status(404).json({
@@ -109,20 +109,42 @@ module.exports = {
   },
   assign: async (req, res) => {
     try {
-      await member_healthissue.create({
-        memberMemberID: req.body.memberID,
-        healthIssueHealthIssueID: req.body.healthIssueID,
-      });
+      console.log(req.body);
 
-      return res.status(201).json({
-        status: 201,
-        message: "Health Issue Assigned.",
-      });
+      const { memberID, healthIssueID, isChecked } = req.body;
+
+      if (isChecked) {
+        // Assign the health issue
+        await member_healthissue.findOrCreate({
+          where: {
+            memberMemberID: memberID,
+            healthIssueHealthIssueID: healthIssueID,
+          },
+        });
+
+        return res.status(201).json({
+          status: 201,
+          message: "Health issue assigned.",
+        });
+      } else {
+        // Unassign the health issue
+        await member_healthissue.destroy({
+          where: {
+            memberMemberID: memberID,
+            healthIssueHealthIssueID: healthIssueID,
+          },
+        });
+
+        return res.status(200).json({
+          status: 200,
+          message: "Health issue unassigned.",
+        });
+      }
     } catch (error) {
-      console.log(error.message);
+      console.error(error.message);
       return res.status(500).json({
         status: 500,
-        message: "Server error",
+        message: "Server error.",
       });
     }
   },

@@ -26,6 +26,8 @@ module.exports = {
       return res.status(200).json({
         status: 200,
         message: "Berhasil login!",
+        memberID: _member.memberID,
+        memberName: _member.memberName,
       });
     } catch (error) {
       console.error(error);
@@ -115,7 +117,7 @@ module.exports = {
         where: {
           memberID: req.params.id,
         },
-      },
+      }
     );
     if (!_member) {
       return res.status(404).json({

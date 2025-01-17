@@ -34,6 +34,9 @@ const nutritionist = database.define("nutritionist", {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
+  adminID: {
+    type: DataTypes.STRING,
+  },
   createdAt: {
     type: DataTypes.DATE,
     allowNull: true,

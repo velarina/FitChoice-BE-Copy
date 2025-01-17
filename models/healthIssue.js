@@ -16,12 +16,15 @@ const healthIssue = database.define("healthIssue", {
     allowNull: false,
   },
   healthIssueDesc: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
   },
   prohibition: {
-    type: DataTypes.STRING,
+    type: DataTypes.TEXT,
     allowNull: false,
+  },
+  nutritionistID: {
+    type: DataTypes.STRING,
   },
   createdAt: {
     type: DataTypes.DATE,
